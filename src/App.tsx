@@ -1,17 +1,29 @@
 import { useState } from 'react'
 
+type User = {
+  name: string
+  age: number
+}
+
 function App() {
-  const [count, setCount] = useState(true)
-  const change = () => setCount(!count)
-  const [arr, setArr] = useState(['1', '2', '3', 4, 5, 6])
-  const changeArr = () => {
-    setArr([...arr, 4])
+  const [user, setUser] = useState<User>({ name: '1', age: 2 })
+  const changeUser = () => {
+    setUser({ name: '2', age: 3 })
   }
+  // const [user, setUser] = useState<User>(() => ({ name: '1', age: 2 }))
+  // const changeUser = () => {
+  //   setUser(() => ({ name: '2', age: 3 }))
+  // }
+  // const [user, setUser] = useState<User>()
+  // const changeUser = () => {
+  //   setUser(undefined)
+  // }
+
   return (
     <>
       app
-      {count}
-      {arr}
+      {user?.age}
+      {user?.name}
     </>
   )
 }
