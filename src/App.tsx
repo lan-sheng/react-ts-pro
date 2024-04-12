@@ -6,24 +6,22 @@ type User = {
 }
 
 function App() {
-  const [user, setUser] = useState<User>({ name: '1', age: 2 })
+  const [user, setUser] = useState<User | null>(null)
   const changeUser = () => {
-    setUser({ name: '2', age: 3 })
+    setUser({
+      name: 'zhangsan',
+      age: 18,
+    })
+    setTimeout(() => {
+      setUser(null)
+    }, 1000)
   }
-  // const [user, setUser] = useState<User>(() => ({ name: '1', age: 2 }))
-  // const changeUser = () => {
-  //   setUser(() => ({ name: '2', age: 3 }))
-  // }
-  // const [user, setUser] = useState<User>()
-  // const changeUser = () => {
-  //   setUser(undefined)
-  // }
-
   return (
     <>
       app
       {user?.age}
       {user?.name}
+      <button onClick={changeUser}>change user</button>
     </>
   )
 }
