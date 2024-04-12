@@ -1,27 +1,16 @@
-import { useState } from 'react'
-
-type User = {
-  name: string
-  age: number
+type Props = {
+  className: string
+  title: null
 }
 
+function Button(props: Props) {
+  return <button className={props.className}></button>
+}
 function App() {
-  const [user, setUser] = useState<User | null>(null)
-  const changeUser = () => {
-    setUser({
-      name: 'zhangsan',
-      age: 18,
-    })
-    setTimeout(() => {
-      setUser(null)
-    }, 1000)
-  }
   return (
     <>
       app
-      {user?.age}
-      {user?.name}
-      <button onClick={changeUser}>change user</button>
+      <Button className="btn" title={null} />
     </>
   )
 }
