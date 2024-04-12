@@ -1,18 +1,24 @@
-type Props = {
-  onGetMessage: (mes: string) => void
-}
+import { useEffect, useRef } from 'react'
 
-function Son({ onGetMessage }: Props) {
-  return <button onClick={() => onGetMessage('子传父')}></button>
-}
 function App() {
-  const getMsg = (mes: string) => {
-    console.log(mes)
-  }
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const timerId = useRef<number | undefined>(undefined)
+
+  useEffect(() => {
+    inputRef.current?.focus()
+
+    timerId.current = setInterval(() => {
+      console.log('hello world')
+    }, 1000)
+
+    return () => {
+      clearInterval(timerId.current)
+    }
+  }, [])
   return (
     <>
-      <Son onGetMessage={mes => console.log(mes)} />
-      <Son onGetMessage={getMsg} />
+      <input type="text" ref={inputRef} />
     </>
   )
 }
