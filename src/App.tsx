@@ -1,21 +1,18 @@
 type Props = {
-  className: string
-  title: null
-  children: React.ReactNode
+  onGetMessage: (mes: string) => void
 }
 
-function Button(props: Props) {
-  return <button className={props.className}>{props.children}</button>
+function Son({ onGetMessage }: Props) {
+  return <button onClick={() => onGetMessage('子传父')}></button>
 }
 function App() {
+  const getMsg = (mes: string) => {
+    console.log(mes)
+  }
   return (
     <>
-      <Button className="btn" title={null}>
-        111
-      </Button>
-      <Button className="btn" title={null}>
-        <span>span</span>
-      </Button>
+      <Son onGetMessage={mes => console.log(mes)} />
+      <Son onGetMessage={getMsg} />
     </>
   )
 }
